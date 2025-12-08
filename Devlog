@@ -1,8 +1,12 @@
+**Devlog #13 -- Commenting Code / Cleaning Up Code :: (12/8/2025)**
+I am going to go ahead and comment the code so that everything is accounted for and neatly arranged for convenience. I am also going to rerun some test cases again just to make sure that everything is running as it should. Then once that is done I am going to go
+ahead and start working on my ReadMe file giving instructions on how to run the code.
+
 **Devlog #12 -- Fixing Pathfinding Errors :: (12/8/2025)**
 I focused on the errors in the pathfinding part of the project. The main issues came from the step/4 rules, the find_exit/2 predicate and how Prolog loaded the file. 
 
-Issue 1: Was the wrong movement behavior in step/4 The first bug came from how I wrote the movement rules. The map bounds were not checked in every direction. This caused moves like down or right to jump outside the grid. The fix was simple. I added the missing 
-boundary checks before reading the next cell.
+Issue 1: Was the wrong movement behavior in step/4 The first bug came from how I wrote the movement rules. The map bounds were not checked in every direction. This caused moves like down or right to jump outside the grid. The fix was simple all I had to do was add 
+the missing boundary checks before reading the next cell.
 
 Issue 2: Duplicate find_exit/2 definitions I found that find_exit/2 had two clauses for the same case. This caused Prolog to load both versions and use the wrong one. The query always failed or returned the wrong clause. I deleted the extra clause and added 
 a cut in the generator version to prevent backtracking loops.
