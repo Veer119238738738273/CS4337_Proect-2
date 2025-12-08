@@ -1,3 +1,8 @@
+**Devlog #10 -- Path Checker :: (12/7/2025)**
+I began writing the path verification by building a follow predicate that moves step by step through the map. My first attempt had the arguments in the wrong order and I mixed up which value represented the current position and which represented the next one. 
+The code ran but gave wrong answers, which showed me that I needed to keep consistent parameter order between this predicate and the step rules. I rewrote follow so that it takes a start position, a direction, and returns the next position. After that I 
+wrapped the logic in a verifier that applies follow to each move in the list. This version matched the map layout and returned the expected result on simple tests. With this part complete I could now check user paths in a predictable way.
+
 **Devlog #9 -- Visited Lists :: (12/7/2025)**
 The infinite loop in my first DFS attempt showed me that I needed a way to stop the search from revisiting the same coordinates. I added a visited list to record every position reached during the search. I also changed the DFS structure so it builds a path 
 in reverse. This version ran without the stack overflow I saw before. I tested it on the basic map and it produced a clear and simple path. With this change the search became stable and ready for use in find_exit.
