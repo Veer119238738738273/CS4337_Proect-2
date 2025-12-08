@@ -9,3 +9,7 @@ valid_map(Map, Start, Exit) :-
     member(Row2, Map),
     member(e, Row2), Exit = (1,1).
 
+cell_at(Map, R, C, Val) :-
+    nth0(R, Map, Row),
+    nth0(C, Row, Val).
+
