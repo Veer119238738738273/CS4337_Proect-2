@@ -1,3 +1,8 @@
+**Devlog #6 -- Shape Check :: (12/7/2025)**
+I knew that a valid map must be rectangular, so I started by checking the length of the first row. My first idea was to use length inside maplist, but I wrote the arguments in the wrong order and Prolog raised an instantiation error. That showed me I needed 
+a predicate that compares row lengths in a cleaner way. I replaced my first attempt with same_length(Row) which kept the code simple. This worked better and Prolog no longer complained. I also added a rule to ensure every cell belongs to the allowed set. 
+These checks do not find the start or exit yet, but they give me a proper structure to build on.
+
 **Devlog #5 -- Cell Access :: (12/7/2025)**
 I saw that I needed real coordinates, so I decided to index the map instead of only scanning the rows. I tried using nth at first, but Prolog raised an error because the correct built-in is nth0. That told me that the best way to read a cell 
 is to write a helper that takes a row index and column index. I added a small predicate that returns a cell value based on its position and tested it on a known map. This showed me the right coordinates and confirmed that indexing works. I still 
