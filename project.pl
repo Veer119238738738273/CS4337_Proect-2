@@ -1,8 +1,5 @@
 % project.pl
 
-find_exit(_, _) :-
-    write('find_exit not implemented yet'), nl, fail.
-
 valid_map(Map, Start, Exit) :-
     Map \= [],
     rectangular(Map),
@@ -42,6 +39,8 @@ step(Map, (R,C), up, (R1,C)) :-
 
 step(Map, (R,C), down, (R1,C)) :-
     R1 is R + 1,
+    length(Map, Rows),
+    R1 < Rows,
     cell_at(Map, R1, C, Val),
     Val \= w.
 
@@ -53,6 +52,9 @@ step(Map, (R,C), left, (R,C1)) :-
 
 step(Map, (R,C), right, (R,C1)) :-
     C1 is C + 1,
+    nth0(0, Map, Row),
+    length(Row, Cols),
+    C1 < Cols,
     cell_at(Map, R, C1, Val),
     Val \= w.
 
@@ -73,6 +75,14 @@ verify_path(Map, Start, Exit, Moves) :-
     follow(Map, Start, Moves, Final),
     Final = Exit.
 
+find_exit(Map, Path) :-
+    var(Path),
+    valid_map(Map, Start, Exit),
+    dfs(Map, Start, Exit, [Start], [], Path),
+    !.
 
-
+find_exit(Map, Path) :-
+    nonvar(Path),
+    valid_map(Map, Start, Exit),
+    verify_path(Map, Start, Exit, Path).
 
