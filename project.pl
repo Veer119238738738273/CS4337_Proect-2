@@ -64,4 +64,15 @@ dfs(Map, Pos, Exit, Visited, MovesAcc, Path) :-
     \+ member(Next, Visited),
     dfs(Map, Next, Exit, [Next|Visited], [Dir|MovesAcc], Path).
 
+follow(_Map, Pos, [], Pos).
+follow(Map, Pos, [Dir|Rest], Final) :-
+    step(Map, Pos, Dir, Next),
+    follow(Map, Next, Rest, Final).
+
+verify_path(Map, Start, Exit, Moves) :-
+    follow(Map, Start, Moves, Final),
+    Final = Exit.
+
+
+
 
