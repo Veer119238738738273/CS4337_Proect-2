@@ -1,3 +1,17 @@
+**Devlog #3 -- Getting Ready to Code :: (12/7/2025)**
+I created a new file project.pl in the same folder as example.pl and test.pl all of which I got True when I checked on whether or not I have imported it correctly.
+I wrote a minimal version of find_exit to check that the file loads which they do. 
+
+I also wrote the command: 
+?- basic_map(M), display_map(M), find_exit(M, A).
+
+And it gave me:
+find_exit not implemented yet
+false.
+
+So find_exit ran, printed the line and failed, which is what I wanted at that stage. 
+Now I am going to continue adding more code and keep testing along the way to make sure that everything is running as it should. 
+
 **Devlog #2 -- Pseudocoded :: (12/7/2025)**
 Before I code, I write down my planned structure in pseudocode. I want the logic to stay clear in my head. In my pseudocoded I decide to use depth first search because it is simple in Prolog. A shortest path is not required, only a valid path.
 Now I am going to go ahead and start implementing this in prolog.
