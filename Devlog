@@ -1,3 +1,8 @@
+**Devlog #7 -- Updated Validation (Valid_Map) :: (12/7/2025)**
+I replaced my first version of valid_map because it did not use coordinates and it did not enforce the rules of the project. The earlier version only checked if some row contained s or e and then returned fixed coordinates which were wrong. I decided to use my 
+cell_at helper with findall to gather all coordinates of both symbols. This let me check that there is exactly one start and one exit. I also added the rectangular and valid-cell checks to keep the structure sound. After these changes, the validation became 
+predictable and stable. I tested it on both good and bad maps and the results matched what I expected.
+
 **Devlog #6 -- Shape Check :: (12/7/2025)**
 I knew that a valid map must be rectangular, so I started by checking the length of the first row. My first idea was to use length inside maplist, but I wrote the arguments in the wrong order and Prolog raised an instantiation error. That showed me I needed 
 a predicate that compares row lengths in a cleaner way. I replaced my first attempt with same_length(Row) which kept the code simple. This worked better and Prolog no longer complained. I also added a rule to ensure every cell belongs to the allowed set. 
