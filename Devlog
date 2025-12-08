@@ -1,3 +1,8 @@
+**Devlog #4 -- Map Start :: (12/7/2025)**
+My first idea for validating the map was simple. I tried to look through the rows with member and check if any row contained s or e. This worked in the sense that it ran, but the output gave me fixed coordinates like (0,0) and (1,1), 
+which were wrong. The test also produced a second result of false which told me that the logic was loose and did not enforce uniqueness. I realised that this method has no way to track the real position of each cell. I also saw that it 
+does not check shape or cell types. I think the next step is to use indexed access so I can recover the actual row and column for each symbol.
+
 **Devlog #3 -- Getting Ready to Code :: (12/7/2025)**
 I created a new file project.pl in the same folder as example.pl and test.pl all of which I got True when I checked on whether or not I have imported it correctly.
 I wrote a minimal version of find_exit to check that the file loads which they do. 
