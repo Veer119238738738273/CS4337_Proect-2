@@ -1,4 +1,25 @@
-**Devlog #10 -- Path Checker :: (12/7/2025)**
+**Devlog #12 -- Fixing Pathfinding Errors :: (12/8/2025)**
+I focused on the errors in the pathfinding part of the project. The main issues came from the step/4 rules, the find_exit/2 predicate and how Prolog loaded the file. 
+
+Issue 1: Was the wrong movement behavior in step/4 The first bug came from how I wrote the movement rules. The map bounds were not checked in every direction. This caused moves like down or right to jump outside the grid. The fix was simple. I added the missing 
+boundary checks before reading the next cell.
+
+Issue 2: Duplicate find_exit/2 definitions I found that find_exit/2 had two clauses for the same case. This caused Prolog to load both versions and use the wrong one. The query always failed or returned the wrong clause. I deleted the extra clause and added 
+a cut in the generator version to prevent backtracking loops.
+
+Issue 3: File was not loading. Prolog showed false when I checked the source file. This told me that SWI was loading a different file. I removed every old .pl file in the folder and kept only one project.pl. After that, source_file(find_exit/2, F) showed the 
+correct path.
+
+Issue 4: Wrong assumptions about query output. Some commands print a value and not true. That is normal in Prolog. A query that produces a path returns the path itself. A query that checks a truth condition returns true or false.
+
+Issue 5: Incorrect test expectations. The test [down,left,down] is valid. Tests like [down,down] fail because the path does not reach the exit. The error messages were correct and the code worked as intended.
+
+**Devlog #11 -- Path Checker :: (12/8/2025)**
+I wrote the final version of find_exit so it chooses between generating a path or checking a given one. My first attempt placed the path-checking clause before the path-generating clause and this caused Prolog to treat unbound variables as lists. 
+I reversed the order so that Prolog first checks whether the second argument is a variable. Once that was fixed, find_exit called DFS when needed or used verify_path to test a given path. I tested both cases and the output matched my expectations. 
+With this change the core logic of the project came together in one predicate.
+
+**Devlog #10 -- Path Checker :: (12/8/2025)**
 I began writing the path verification by building a follow predicate that moves step by step through the map. My first attempt had the arguments in the wrong order and I mixed up which value represented the current position and which represented the next one. 
 The code ran but gave wrong answers, which showed me that I needed to keep consistent parameter order between this predicate and the step rules. I rewrote follow so that it takes a start position, a direction, and returns the next position. After that I 
 wrapped the logic in a verifier that applies follow to each move in the list. This version matched the map layout and returned the expected result on simple tests. With this part complete I could now check user paths in a predictable way.
