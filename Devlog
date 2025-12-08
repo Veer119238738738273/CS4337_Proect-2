@@ -1,1 +1,9 @@
+Devlog #1 -- Idea planning / First look at the project:: (12/7/2025)
+I start the project by opening the two given files, example.pl and test.pl. example.pl has a few small maps and a display_map/1 predicate. test.pl has a random maze generator and its own display function. The instructions say that I must write 
+find_exit/2. The predicate should take a map and either return a path, or check a given path. It should also reject bad maps. At this point I try to understand the representation.  The map is a list of rows. Each row is a list of symbols. 
+The symbols are w for wall, f for free, s for start, and e for exit. The assignment wants me to use these maps, not create my own. So I decide that I will not change example.pl or test.pl. I will just create a new file, project.pl, with my own predicates.
 
+I start thinking about the tasks. First I need to check to see that whether or not a map is valid. Find the coordinates of s and e. Walk through the maze using moves up, down, left, and right. Explore the maze to find a path. If the user gives a path, 
+follow it and check if it reaches the exit.I decide to split the work in that order. First I will validate maps, then I will follow a path, then I will search for one.
+
+Before I even get started on the actual code in prolog I am going to write some pseudocode to guide my ideas better.
