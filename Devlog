@@ -1,3 +1,8 @@
+**Devlog #5 -- Cell Access :: (12/7/2025)**
+I saw that I needed real coordinates, so I decided to index the map instead of only scanning the rows. I tried using nth at first, but Prolog raised an error because the correct built-in is nth0. That told me that the best way to read a cell 
+is to write a helper that takes a row index and column index. I added a small predicate that returns a cell value based on its position and tested it on a known map. This showed me the right coordinates and confirmed that indexing works. I still 
+do not have full map validation yet, but I now have a way to extract real positions. My next idea is to use findall on this helper so I can locate the start and exit in the map.
+
 **Devlog #4 -- Map Start :: (12/7/2025)**
 My first idea for validating the map was simple. I tried to look through the rows with member and check if any row contained s or e. This worked in the sense that it ran, but the output gave me fixed coordinates like (0,0) and (1,1), 
 which were wrong. The test also produced a second result of false which told me that the logic was loose and did not enforce uniqueness. I realised that this method has no way to track the real position of each cell. I also saw that it 
