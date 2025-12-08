@@ -1,5 +1,4 @@
-Project 2 (CS4337):: 
-Maze Validation, Path Verification, and DFS Pathfinding in Prolog
+Project 2 (CS4337):: Maze Validation, Path Verification, and DFS Pathfinding in Prolog
 This project implements predicates for checking a maze, verifying a path, and generating a path using depth first search. This document explains how to load the files, run the tests, and understand the outputs.
 
 **The folder must contain the following files:**
