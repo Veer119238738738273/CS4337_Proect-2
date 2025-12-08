@@ -56,9 +56,12 @@ step(Map, (R,C), right, (R,C1)) :-
     cell_at(Map, R, C1, Val),
     Val \= w.
 
-dfs(Map, Pos, Exit, [Dir|Rest]) :-
-    step(Map, Pos, Dir, Next),
-    dfs(Map, Next, Exit, Rest).
+dfs(_Map, Pos, Pos, _Visited, MovesAcc, Path) :-
+    reverse(MovesAcc, Path).
 
-dfs(_Map, Pos, Pos, []).
+dfs(Map, Pos, Exit, Visited, MovesAcc, Path) :-
+    step(Map, Pos, Dir, Next),
+    \+ member(Next, Visited),
+    dfs(Map, Next, Exit, [Next|Visited], [Dir|MovesAcc], Path).
+
 
