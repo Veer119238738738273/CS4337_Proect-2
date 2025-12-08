@@ -1,3 +1,7 @@
+**Devlog #9 -- Visited Lists :: (12/7/2025)**
+The infinite loop in my first DFS attempt showed me that I needed a way to stop the search from revisiting the same coordinates. I added a visited list to record every position reached during the search. I also changed the DFS structure so it builds a path 
+in reverse. This version ran without the stack overflow I saw before. I tested it on the basic map and it produced a clear and simple path. With this change the search became stable and ready for use in find_exit.
+
 **Devlog #8 -- First Search :: (12/7/2025)**
 I started working on the path search and wrote a simple version of DFS that moved through the grid. I did not track visited cells in this first attempt and the search kept looping in circles. When I tested my code on a small map, Prolog did not return a result 
 and I had to stop the program. This showed me that the maze allows moves that lead back to earlier positions and DFS will explore them forever. I understood then that I needed a list of visited coordinates to stop the recursion from repeating. I planned to 
