@@ -1,3 +1,8 @@
+**Devlog #8 -- First Search :: (12/7/2025)**
+I started working on the path search and wrote a simple version of DFS that moved through the grid. I did not track visited cells in this first attempt and the search kept looping in circles. When I tested my code on a small map, Prolog did not return a result 
+and I had to stop the program. This showed me that the maze allows moves that lead back to earlier positions and DFS will explore them forever. I understood then that I needed a list of visited coordinates to stop the recursion from repeating. I planned to 
+rewrite the search to carry an accumulator for moves and another list for visited cells. This change should keep the search stable and allow it to reach the exit.
+
 **Devlog #7 -- Updated Validation (Valid_Map) :: (12/7/2025)**
 I replaced my first version of valid_map because it did not use coordinates and it did not enforce the rules of the project. The earlier version only checked if some row contained s or e and then returned fixed coordinates which were wrong. I decided to use my 
 cell_at helper with findall to gather all coordinates of both symbols. This let me check that there is exactly one start and one exit. I also added the rectangular and valid-cell checks to keep the structure sound. After these changes, the validation became 
