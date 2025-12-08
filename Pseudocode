@@ -1,0 +1,43 @@
+PREDICATE find_exit(Map, Path):
+    call valid_map(Map, StartCoord, ExitCoord)
+    if Path is a variable:
+        search for a path from StartCoord to ExitCoord
+        return that path
+    else:
+        verify that the given Path moves from StartCoord to ExitCoord
+
+PREDICATE valid_map(Map, StartCoord, ExitCoord):
+    check that Map is not empty
+    check that Map is rectangular
+    check that every cell is one of {s, e, w, f}
+    find all coordinates of 's'
+    find all coordinates of 'e'
+    ensure there is exactly one 's' and one 'e'
+    return their coordinates
+
+PREDICATE rectangular(Map):
+    get first row length L
+    for each row:
+        check its length is L
+        check L is greater than zero
+
+PREDICATE cell_at(Map, R, C, Value):
+    Row = Map[R]
+    Value = Row[C]
+
+PREDICATE step(Map, Position, Direction, NewPosition):
+    compute NewPosition by moving one cell
+    check that NewPosition is inside the map
+    check that cell is not 'w'
+
+PREDICATE verify_path(Map, Start, Exit, Moves):
+    follow Moves starting at Start using step/4
+    after all moves:
+        succeed if current position equals Exit
+
+PREDICATE dfs(Map, Position, Exit, Visited, AccMoves, Path):
+    if Position equals Exit:
+        reverse AccMoves into Path
+    else:
+        choose a legal step to a neighbour that is not visited
+        recurse with updated position, visited list, and moves
